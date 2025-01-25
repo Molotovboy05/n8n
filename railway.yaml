@@ -1,0 +1,25 @@
+# railway.yaml
+
+# Déclaration des services
+services:
+  - name: n8n
+    source: ./  # Chemin vers votre application
+    type: web
+    envVars:
+      DB_TYPE: postgresdb
+      DB_POSTGRESDB_HOST: ${{PGHOST}}
+      DB_POSTGRESDB_DATABASE: ${PGDATABASE}
+      DB_POSTGRESDB_PORT: ${PGPORT}
+      DB_POSTGRESDB_USER: ${PGUSER}
+      DB_POSTGRESDB_PASSWORD: ${PGPASSWORD}
+      PORT: 5678
+      N8N_LOG_LEVEL: info
+      GENERIC_TIMEZONE: Europe/Paris
+      TZ: Europe/Paris
+      N8N_DEFAULT_LOCALE: fr
+      N8N_ENCRYPTION_KEY: ${N8N_ENCRYPTION_KEY} # Configurez cette variable comme secret dans Railway
+
+# Déclaration des plugins (base de données PostgreSQL)
+plugins:
+  - name: PostgreSQL
+    plan: starter # ou free selon votre abonnement
